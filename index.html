@@ -2,191 +2,275 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Asesor Académico – Salud | TECH Universidad Tecnológica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asesor Académico – Salud | TECH</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { --primary:#0048b4; }
-    * { box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background:#f4f6f9; color:#333;
-      min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
+    :root{
+      --tech-blue:#003A8C;   /* Azul institucional */
+      --tech-blue-600:#0b5fff;
+      --tech-red:#D81E24;    /* Acento */
+      --text:#0f172a;
+      --muted:#64748b;
+      --bg:#f4f6f9;
+      --card:#ffffff;
+      --ring:#c7d2fe;
+      --radius:16px;
     }
-    section {
-      width:100%; max-width:460px; background:#fff; border-radius:18px;
-      box-shadow:0 8px 30px rgba(0,0,0,.08); padding:28px;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; color:var(--text); background:var(--bg);}
+    .shell{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .card{
+      width:100%;max-width:520px;background:var(--card);border-radius:var(--radius);
+      box-shadow:0 10px 30px rgba(2,6,23,.08);overflow:hidden;border:1px solid #e5e7eb;
     }
-    h2 { color:var(--primary); text-align:center; margin:0 0 16px; }
-    .desc { text-align:center; color:#666; font-size:14px; margin-bottom:16px; }
-    label { display:block; font-weight:600; margin-top:12px; }
-    input, select {
-      width:100%; margin-top:6px; padding:10px 12px; border:1px solid #ccd5e0;
-      border-radius:10px; font-size:15px; outline:none;
+    .card-head{
+      background:linear-gradient(135deg,var(--tech-blue),#012c68);
+      color:#fff;padding:28px 24px;border-bottom:1px solid rgba(255,255,255,.12);
     }
-    input:focus, select:focus { border-color:var(--primary); }
-    .radio-group { margin-top:10px; display:grid; gap:6px; }
-    .radio-group label { font-weight:500; }
-    .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .cta {
-      margin-top:22px; width:100%; background:var(--primary); color:#fff; border:none;
-      padding:12px; border-radius:10px; font-size:16px; font-weight:700; cursor:pointer;
-      transition:.2s ease background;
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{
+      width:36px;height:36px;border-radius:10px;background:#fff1;display:flex;align-items:center;justify-content:center;border:1px solid #ffffff33;
+      font-weight:800;letter-spacing:.5px;
     }
-    .cta:hover { background:#00388e; }
-    .small { font-size:12.5px; color:#6b7280; text-align:center; margin-top:10px; }
-    .hint { font-size:12.5px; color:#6b7280; margin-top:6px; }
-    .ok { color:#0f766e; font-weight:600; }
-    .err { color:#b91c1c; font-weight:600; }
+    .brand h1{font-size:20px;line-height:1.2;margin:0}
+    .subtitle{margin:8px 0 0;font-size:14px;color:#e6eefc}
+    .emph{color:#fff;font-weight:700}
+
+    .card-body{padding:22px}
+    label{font-weight:600;font-size:14px;display:block;margin:14px 0 6px}
+    input,select,textarea{
+      width:100%;padding:12px 12px;border:1px solid #d1d5db;border-radius:12px;background:#fff;font-size:15px;
+      outline:none;transition:border .15s, box-shadow .15s;
+    }
+    textarea{resize:vertical;min-height:72px}
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--tech-blue-600);
+      box-shadow:0 0 0 3px var(--ring);
+    }
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .hint{font-size:12px;color:var(--muted);margin-top:8px}
+    .cta{
+      width:100%;margin-top:18px;background:var(--tech-blue);color:#fff;border:none;border-radius:12px;
+      padding:13px 14px;font-weight:700;font-size:16px;cursor:pointer;transition:filter .2s, transform .02s;
+    }
+    .cta:hover{filter:brightness(1.05)}
+    .cta:active{transform:translateY(1px)}
+    .foot{
+      padding:14px 22px;border-top:1px solid #eef2f7;background:#fafbff;color:#475569;font-size:12.5px;text-align:center;
+    }
+    .ok{color:#0f766e;font-weight:600}
+    .err{color:#b91c1c;font-weight:600}
+
+    /* Tarjetas de contacto (nuevo) */
+    .contact-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .contact-card {
+      flex: 1 1 48%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 14px;
+      color: #1e293b;
+      text-align: left;
+      min-height: 60px;
+      user-select: none;
+    }
+    .contact-card:hover {
+      border-color: var(--tech-blue);
+      background: #f0f5ff;
+    }
+    .contact-card input[type="radio"] {
+      accent-color: var(--tech-blue);
+      width: 18px;
+      height: 18px;
+    }
+    .contact-card span {
+      line-height: 1.2;
+    }
+
+    @media (max-width: 480px){
+      .grid-2{grid-template-columns:1fr}
+      .contact-card{flex:1 1 100%}
+    }
   </style>
 </head>
 <body>
-  <section>
-    <h2>Asesor Académico – Salud</h2>
-    <p class="desc">Te ayudamos a elegir el programa ideal. <strong>Becas del 50&nbsp;% solo en FP.</strong></p>
+  <main class="shell">
+    <section class="card" aria-label="Formulario de asesor académico">
+      <header class="card-head">
+        <div class="brand">
+          <div class="logo">T</div>
+          <h1>Asesor Académico – Salud</h1>
+        </div>
+        <p class="subtitle">
+          Te ayudamos a elegir el programa ideal.
+          <span class="emph">Becas académicas disponibles en programas seleccionados (plazas limitadas).</span>
+        </p>
+      </header>
 
-    <label for="lead-nombre">Nombre completo</label>
-    <input id="lead-nombre" type="text" placeholder="Tu nombre completo" required />
+      <div class="card-body">
+        <form id="leadForm" novalidate>
+          <label for="nombre">Nombre completo</label>
+          <input id="nombre" name="nombre" type="text" placeholder="Tu nombre completo" required />
 
-    <div class="row">
-      <div>
-        <label for="lead-pais">País</label>
-        <input id="lead-pais" type="text" placeholder="Ej. Perú, España..." required />
+          <div class="grid-2">
+            <div>
+              <label for="pais">País</label>
+              <input id="pais" name="pais" type="text" placeholder="Ej. Perú, Chile..." required />
+            </div>
+            <div>
+              <label for="correo">Correo</label>
+              <input id="correo" name="correo" type="email" placeholder="tucorreo@ejemplo.com" required />
+            </div>
+          </div>
+
+          <label for="interes">Área de interés</label>
+          <select id="interes" name="interes" required>
+            <option value="">Selecciona...</option>
+            <option>Psicología</option>
+            <option>Nutrición</option>
+            <option>Fisioterapia</option>
+          </select>
+
+          <div class="grid-2">
+            <div>
+              <label for="tipo">Tipo de programa</label>
+              <select id="tipo" name="tipo" required>
+                <option value="">Selecciona...</option>
+                <option>Máster</option>
+                <option>Diplomado</option>
+                <option>Programa de Especialización</option>
+              </select>
+            </div>
+            <div>
+              <label for="objetivo">Objetivo principal</label>
+              <select id="objetivo" name="objetivo" required>
+                <option value="">Selecciona...</option>
+                <option>Cambiar de área o especialidad</option>
+                <option>Mejorar mi puesto o salario</option>
+                <option>Actualizar conocimientos</option>
+                <option>Empezar mi primera formación en salud</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="inicio">¿Cuándo te gustaría empezar a estudiar?</label>
+          <select id="inicio" name="inicio" required>
+            <option value="">Selecciona...</option>
+            <option>Lo antes posible</option>
+            <option>En 1 o 2 meses</option>
+            <option>Solo busco información por ahora</option>
+          </select>
+
+          <label class="block font-semibold text-gray-700 mb-3">¿Cómo prefieres que te contactemos?</label>
+          <div class="contact-options">
+            <label class="contact-card">
+              <input type="radio" name="preferencia" value="WhatsApp" />
+              <span>📞 Agendar llamada <br><strong>por WhatsApp</strong></span>
+            </label>
+
+            <label class="contact-card">
+              <input type="radio" name="preferencia" value="Email" checked />
+              <span>✉️ Recibir información <br><strong>por Email</strong></span>
+            </label>
+          </div>
+
+          <label for="comentarios">¿Quieres contarnos algo más? <span class="hint">(opcional)</span></label>
+          <textarea id="comentarios" name="comentarios" placeholder="Ej.: trabajo en clínica, me interesa el área organizacional, etc."></textarea>
+
+          <button type="submit" class="cta">Enviar</button>
+          <p id="estado" class="hint" role="status" aria-live="polite"></p>
+        </form>
       </div>
-      <div>
-        <label for="lead-email">Correo</label>
-        <input id="lead-email" type="email" placeholder="tucorreo@ejemplo.com" required />
-      </div>
-    </div>
 
-    <label for="lead-area">Área de interés</label>
-    <select id="lead-area" required>
-      <option value="">Selecciona...</option>
-      <option>Enfermería</option>
-      <option>Fisioterapia</option>
-      <option>Nutrición</option>
-      <option>Psicología</option>
-      <option>Farmacia</option>
-      <option>Odontología</option>
-      <option>Otro</option>
-    </select>
-
-    <div class="row">
-      <div>
-        <label for="lead-tipo">Tipo de programa</label>
-        <select id="lead-tipo" required>
-          <option value="">Selecciona...</option>
-          <option>Máster</option>
-          <option>Experto Universitario</option>
-          <option>Diplomado</option>
-          <option>Formación Profesional (FP)</option>
-        </select>
-      </div>
-      <div>
-        <label for="lead-objetivo">Objetivo</label>
-        <select id="lead-objetivo" required>
-          <option value="">Selecciona...</option>
-          <option>Actualizarme</option>
-          <option>Conseguir un ascenso</option>
-          <option>Cambiar de área</option>
-          <option>Complementar mi formación</option>
-        </select>
-      </div>
-    </div>
-
-    <label>¿Cómo prefieres que te contactemos?</label>
-    <div class="radio-group">
-      <label><input type="radio" name="preferencia" value="agendar" checked /> Agendar llamada (WhatsApp)</label>
-      <label><input type="radio" name="preferencia" value="email" /> Recibir información por email</label>
-    </div>
-
-    <button class="cta" id="btn-enviar" onclick="window.enviarLead()">Enviar</button>
-    <p id="estado" class="hint"></p>
-    <p class="small">Al enviar, aceptas ser contactado con fines informativos. No compartimos tus datos con terceros.</p>
-  </section>
+      <footer class="foot">
+        © TECH Universidad Tecnológica · Atención académica 100 % online
+      </footer>
+    </section>
+  </main>
 
   <script>
-    // === CONFIGURACIÓN GLOBAL ===
-    window.SETTINGS = {
-      webhookUrl: "https://hook.eu2.make.com/57sxk8eobf7gmlqxgusyr71p60z6fxdo", // <- tu URL de Make
-      whatsappNumber: "376663140" // <- cambia por tu número en formato internacional, sin "+"
-    };
+    const WEBHOOK = "https://hook.eu2.make.com/57sxk8eobf7gmlqxgusyr71p60z6fxdo";
+    const estado = document.getElementById('estado');
+    const f = document.getElementById('leadForm');
 
-    // Utilidad rápida
-    const $ = (id) => document.getElementById(id);
-    const setEstado = (html, ok=false) => {
-      const el = $('estado');
-      el.innerHTML = html;
-      el.className = ok ? 'hint ok' : 'hint err';
-    };
-
-    // === CÁLCULO DE LEAD SCORE en el widget ===
-    function calcularLeadScore({pais, tipo, objetivo, preferencia}) {
-      let score = 0;
-      if (objetivo === "Conseguir un ascenso" || objetivo === "Cambiar de área") score += 2; // intención fuerte
-      if (["España","Andorra","Perú","México"].includes(pais)) score += 1;                  // países foco
-      if (tipo === "Formación Profesional (FP)") score += 1;                                 // beca 50% FP
-      if (preferencia === "agendar") score += 1;                                             // alta intención
-      return score; // 0–5
+    function setEstado(msg, ok=false){
+      estado.textContent = msg;
+      estado.className = ok ? 'hint ok' : 'hint err';
     }
 
-    // === ENVÍO PRINCIPAL ===
-    window.enviarLead = async function () {
-      const nombre = $('lead-nombre').value.trim();
-      const pais = $('lead-pais').value.trim();
-      const email = $('lead-email').value.trim();
-      const area = $('lead-area').value;
-      const tipo = $('lead-tipo').value;
-      const objetivo = $('lead-objetivo').value;
-      const prefEl = document.querySelector('input[name="preferencia"]:checked');
-      const preferencia = prefEl ? prefEl.value : 'agendar';
+    // Lead score sencillo para priorizar (0–4)
+    function calcularLeadScore({objetivo, pais, preferencia, tipo}){
+      let s = 0;
+      if (objetivo === "Cambiar de área o especialidad" || objetivo === "Mejorar mi puesto o salario") s += 2;
+      if (["Perú","Chile","México","Colombia","Argentina"].includes((pais||"").trim())) s += 1;
+      if (preferencia === "WhatsApp") s += 1;
+      return s;
+    }
 
-      if (!nombre || !email) {
-        setEstado('Completa al menos <b>nombre</b> y <b>correo</b>.');
-        alert('Por favor, completa al menos nombre y correo.');
+    f.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+
+      const data = {
+        nombre: f.nombre.value.trim(),
+        pais: f.pais.value.trim(),
+        correo: f.correo.value.trim(),
+        interes: f.interes.value,
+        tipo: f.tipo.value,
+        objetivo: f.objetivo.value,
+        inicio: f.inicio.value,
+        preferencia: (new FormData(f).get('preferencia')) || 'Email',
+        comentarios: f.comentarios.value.trim()
+      };
+
+      if (!data.nombre || !data.correo){
+        setEstado('Por favor, completa nombre y correo.');
+        alert('Completa nombre y correo para continuar.');
         return;
       }
 
-      const lead_score = calcularLeadScore({pais, tipo, objetivo, preferencia});
+      const lead_score = calcularLeadScore({
+        objetivo: data.objetivo,
+        pais: data.pais,
+        preferencia: data.preferencia,
+        tipo: data.tipo
+      });
 
       const payload = {
-        nombre, pais, email, area, tipo, objetivo, preferencia,
+        ...data,
         lead_score,
         origen: "Widget Asesor Académico – Salud",
         fecha_iso: new Date().toISOString()
       };
 
-      // Envío a Make
-      try {
-        const resp = await fetch(window.SETTINGS.webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+      try{
+        const resp = await fetch(WEBHOOK,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
           body: JSON.stringify(payload)
         });
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-
-        setEstado('Datos enviados correctamente. (score: ' + lead_score + ')', true);
-        alert('✅ Datos enviados. ¡Gracias por tu interés!');
-
-        // Abrir WhatsApp si prefirió agendar
-        if (preferencia === 'agendar') {
-          const texto = `Hola, soy ${nombre}. Me interesa el ${tipo} en ${area}. ¿Podemos agendar una llamada?`;
-          window.open(`https://wa.me/${window.SETTINGS.whatsappNumber}?text=${encodeURIComponent(texto)}`, '_blank');
-        }
-
-        // Limpiar
-        $('lead-nombre').value = '';
-        $('lead-pais').value = '';
-        $('lead-email').value = '';
-        $('lead-area').value = '';
-        $('lead-tipo').value = '';
-        $('lead-objetivo').value = '';
-
-      } catch (e) {
-        console.error('Error enviando a Make:', e);
-        setEstado('No se pudo enviar. Revisa conexión o URL de webhook.');
-        alert('⚠️ No se pudo enviar. Intenta de nuevo.');
+        if(!resp.ok) throw new Error('HTTP '+resp.status);
+        setEstado('Datos enviados correctamente. ¡Gracias por tu interés!', true);
+        f.reset();
+      }catch(err){
+        console.error(err);
+        setEstado('No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.');
+        alert('⚠️ Ocurrió un error al enviar. Intenta nuevamente.');
       }
-    };
+    });
   </script>
 </body>
 </html>
